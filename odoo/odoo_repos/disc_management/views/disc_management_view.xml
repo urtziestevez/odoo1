@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Gestión de Discos" id="menu_root" sequence="0"
+web_icon="disc_management,description/static/icon.png"/>
+
+        <record name="disc_tree" model="ir.ui.view">
+            <field name="name">disc.tree</field>
+            <field name="model">disc.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="genere"/>
+                </tree>
+            </field>
+        </record>
+
+        <record name="disc_form" model="ir.ui.view">
+            <field name="name">disc.form</field>
+            <field name="model">disc.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="author"/>
+                            <field name="genere"/>
+                        </group>
+                        <group>
+                            <field name="year"/>
+                            <field name="format"/>
+                            <field name="remastered"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="image" widget="image"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="disc_action" model="ir.actions.act_window">
+            <field name="name">disc</field>
+            <field name="res_model">disc.management</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="disc_tree"/>
+        </record>
+
+        <menuitem name="Discos" parent="menu_root" id="menu_disc" sequence="1" action="disc_action"/>
+
+    </data>
+</odoo>
